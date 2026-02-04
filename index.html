@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For My Forever ❤️</title>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;600&family=Parisienne&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { height: 100vh; display: flex; align-items: center; justify-content: center; background: #000; overflow: hidden; font-family: 'Montserrat', sans-serif; }
+        canvas { position: absolute; top: 0; left: 0; pointer-events: none; }
+        .card { width: 85%; max-width: 400px; padding: 40px; border-radius: 30px; background: rgba(255, 255, 255, 0.07); backdrop-filter: blur(25px); border: 1px solid rgba(255, 182, 193, 0.2); text-align: center; z-index: 100; box-shadow: 0 0 40px rgba(255, 77, 109, 0.15); }
+        h1 { font-family: 'Parisienne', cursive; color: #ff4d6d; font-size: 3rem; margin-bottom: 20px; }
+        p { color: #ffd1dc; line-height: 1.8; font-size: 1.1rem; font-style: italic; }
+        input { background: rgba(255,255,255,0.1); border: 1px solid #ff4d6d; border-radius: 50px; padding: 12px; width: 85%; color: white; text-align: center; margin-bottom: 25px; outline: none; }
+        .btn { background: #ff4d6d; color: white; border: none; padding: 15px 45px; border-radius: 50px; cursor: pointer; font-weight: bold; box-shadow: 0 0 20px rgba(255, 77, 109, 0.4); }
+        #noBtn { position: absolute; background: rgba(255,255,255,0.15); color: #fff; padding: 8px 20px; border-radius: 20px; border: none; transition: 0.1s; }
+        .hidden { display: none; }
+    </style>
+</head>
+<body>
+    <canvas id="heartCanvas"></canvas>
+    <div class="card" id="mainBox">
+        <div id="step1">
+            <h1>My Soulmate</h1>
+            <p>Unlock our secret space...</p>
+            <input type="text" id="pass" oninput="this.value = this.value.toUpperCase()" placeholder="Hint: LOVE">
+            <br><button class="btn" onclick="unlock()">Unlock</button>
+        </div>
+        <div id="step2" class="hidden">
+            <h1>Will You?</h1>
+            <p>I want you for every single breath I take.</p>
+            <div style="height: 150px; margin-top: 30px; position: relative;">
+                <button class="btn" onclick="explodeHearts()">Yes, Forever</button>
+                <button id="noBtn" onmouseover="moveNo()">No</button>
+            </div>
+        </div>
+        <div id="step3" class="hidden">
+            <h1>Infinite Love</h1>
+            <p id="finalMsg" style="text-align: left;"></p>
+            <div style="color: #ff4d6d; margin-top: 25px; font-weight: bold; font-size: 1.3rem; font-family: 'Great Vibes'; text-align: center;">Yours Eternally. ❤️</div>
+        </div>
+    </div>
+    <script>
+        const canvas = document.getElementById('heartCanvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+        let hearts = [];
+        class Heart {
+            constructor(x, y, sx, sy) { this.x = x; this.y = y; this.sx = sx; this.sy = sy; this.o = 1; }
+            draw() {
+                ctx.globalAlpha = this.o; ctx.fillStyle = '#ff4d6d'; ctx.beginPath();
+                ctx.moveTo(this.x, this.
+      
