@@ -13,7 +13,7 @@
         h1 { font-family: 'Parisienne', cursive; color: #00d4ff; font-size: 2.8rem; margin-bottom: 20px; }
         p { color: #d1e8ff; line-height: 1.8; font-size: 1.1rem; font-style: italic; }
         input { background: rgba(255,255,255,0.08); border: 1px solid #00d4ff; border-radius: 50px; padding: 12px; width: 85%; color: white; text-align: center; margin-bottom: 25px; outline: none; }
-        .btn { background: #00d4ff; color: #050a14; border: none; padding: 15px 45px; border-radius: 50px; cursor: pointer; font-weight: bold; box-shadow: 0 0 20px rgba(0, 212, 255, 0.3); }
+        .btn { background: #00d4ff; color: #050a14; border: none; padding: 15px 45px; border-radius: 50px; cursor: pointer; font-weight: bold; }
         .hidden { display: none; }
     </style>
 </head>
@@ -29,7 +29,7 @@
         <div id="step2" class="hidden">
             <h1>You're Special!</h1>
             <p id="finalMsg" style="text-align: left; margin-top: 20px;"></p>
-            <div style="color: #00d4ff; margin-top: 25px; font-weight: bold; font-family: 'Parisienne'; font-size: 1.5rem;">Glad to have you in my life! ✨</div>
+            <div style="color: #00d4ff; margin-top: 25px; font-weight: bold; font-family: 'Parisienne'; font-size: 1.5rem;">Glad to have you! ✨</div>
         </div>
     </div>
     <script>
@@ -37,24 +37,18 @@
         const ctx = canvas.getContext('2d');
         canvas.width = window.innerWidth; canvas.height = window.innerHeight;
         let stars = [];
-        class Star {
-            constructor() { this.x = Math.random()*canvas.width; this.y = Math.random()*canvas.height; this.size = Math.random()*2; this.speed = Math.random()*0.3; }
-            draw() { ctx.fillStyle = "white"; ctx.beginPath(); ctx.arc(this.x, this.y, this.size, 0, Math.PI*2); ctx.fill(); }
-            update() { this.y += this.speed; if(this.y > canvas.height) this.y = 0; }
-        }
-        for(let i=0; i<120; i++) stars.push(new Star());
+        class Star { constructor() { this.x = Math.random()*canvas.width; this.y = Math.random()*canvas.height; this.size = Math.random()*2; this.speed = Math.random()*0.3; } draw() { ctx.fillStyle = "white"; ctx.beginPath(); ctx.arc(this.x, this.y, this.size, 0, Math.PI*2); ctx.fill(); } update() { this.y += this.speed; if(this.y > canvas.height) this.y = 0; } }
+        for(let i=0; i<100; i++) stars.push(new Star());
         function animate() { ctx.clearRect(0,0,canvas.width,canvas.height); stars.forEach(s=>{s.update(); s.draw();}); requestAnimationFrame(animate); }
         animate();
         function unlock() {
-            const p = document.getElementById('pass').value.toUpperCase();
-            if(p === "BESTIE") {
+            if(document.getElementById('pass').value.toUpperCase() === "BESTIE") {
                 document.getElementById('step1').classList.add('hidden');
                 document.getElementById('step2').classList.remove('hidden');
-                const msg = "I just wanted to take a moment to say how much I appreciate your presence. You're not just a friend, you're a special person who brings so much positive energy. Thank you for being exactly who you are!";
+                const msg = "I just wanted to say how much I appreciate your presence. You're a wonderful person and a great friend. Thank you for being you!";
                 let i = 0; function type() { if(i < msg.length) { document.getElementById("finalMsg").innerHTML += msg.charAt(i); i++; setTimeout(type, 45); } } type();
             } else { alert("Try 'BESTIE'"); }
         }
     </script>
 </body>
 </html>
-
