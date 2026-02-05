@@ -3,80 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>For My Forever ❤️</title>
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;600&family=Parisienne&display=swap" rel="stylesheet">
+    <title>To A Special Friend ✨</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600&family=Parisienne&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { height: 100vh; display: flex; align-items: center; justify-content: center; background: #000; overflow: hidden; font-family: 'Montserrat', sans-serif; }
+        body { height: 100vh; display: flex; align-items: center; justify-content: center; background: #050a14; overflow: hidden; font-family: 'Montserrat', sans-serif; }
         canvas { position: absolute; top: 0; left: 0; pointer-events: none; }
-        .card { width: 85%; max-width: 400px; padding: 40px; border-radius: 30px; background: rgba(255, 255, 255, 0.07); backdrop-filter: blur(25px); border: 1px solid rgba(255, 182, 193, 0.2); text-align: center; z-index: 100; box-shadow: 0 0 40px rgba(255, 77, 109, 0.15); }
-        h1 { font-family: 'Parisienne', cursive; color: #ff4d6d; font-size: 3rem; margin-bottom: 20px; }
-        p { color: #ffd1dc; line-height: 1.8; font-size: 1.1rem; font-style: italic; }
-        input { background: rgba(255,255,255,0.1); border: 1px solid #ff4d6d; border-radius: 50px; padding: 12px; width: 85%; color: white; text-align: center; margin-bottom: 25px; outline: none; }
-        .btn { background: #ff4d6d; color: white; border: none; padding: 15px 45px; border-radius: 50px; cursor: pointer; font-weight: bold; box-shadow: 0 0 20px rgba(255, 77, 109, 0.4); }
-        #noBtn { position: absolute; background: rgba(255,255,255,0.15); color: #fff; padding: 8px 20px; border-radius: 20px; border: none; transition: 0.1s; }
+        .card { width: 85%; max-width: 400px; padding: 40px; border-radius: 30px; background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(25px); border: 1px solid rgba(0, 212, 255, 0.2); text-align: center; z-index: 100; box-shadow: 0 0 50px rgba(0, 212, 255, 0.1); }
+        h1 { font-family: 'Parisienne', cursive; color: #00d4ff; font-size: 2.8rem; margin-bottom: 20px; }
+        p { color: #d1e8ff; line-height: 1.8; font-size: 1.1rem; font-style: italic; }
+        input { background: rgba(255,255,255,0.08); border: 1px solid #00d4ff; border-radius: 50px; padding: 12px; width: 85%; color: white; text-align: center; margin-bottom: 25px; outline: none; }
+        .btn { background: #00d4ff; color: #050a14; border: none; padding: 15px 45px; border-radius: 50px; cursor: pointer; font-weight: bold; box-shadow: 0 0 20px rgba(0, 212, 255, 0.3); }
         .hidden { display: none; }
     </style>
 </head>
 <body>
-    <canvas id="heartCanvas"></canvas>
-    <div class="card" id="mainBox">
+    <canvas id="starCanvas"></canvas>
+    <div class="card">
         <div id="step1">
-            <h1>My Soulmate</h1>
-            <p>Unlock our secret space...</p>
-            <input type="text" id="pass" placeholder="Password: LOVE">
+            <h1>Dear Friend</h1>
+            <p>Something special is waiting for you...</p><br>
+            <input type="text" id="pass" placeholder="Password: BESTIE">
             <br><button class="btn" onclick="unlock()">Unlock</button>
         </div>
         <div id="step2" class="hidden">
-            <h1>Will You?</h1>
-            <p>I want you for every single breath I take.</p>
-            <div style="height: 150px; margin-top: 30px; position: relative;">
-                <button class="btn" onclick="explodeHearts()">Yes, Forever</button>
-                <button id="noBtn" onmouseover="moveNo()">No</button>
-            </div>
-        </div>
-        <div id="step3" class="hidden">
-            <h1>Infinite Love</h1>
-            <p id="finalMsg" style="text-align: left;"></p>
-            <div style="color: #ff4d6d; margin-top: 25px; font-weight: bold; font-size: 1.3rem; font-family: 'Great Vibes'; text-align: center;">Yours Eternally. ❤️</div>
+            <h1>You're Special!</h1>
+            <p id="finalMsg" style="text-align: left; margin-top: 20px;"></p>
+            <div style="color: #00d4ff; margin-top: 25px; font-weight: bold; font-family: 'Parisienne'; font-size: 1.5rem;">Glad to have you in my life! ✨</div>
         </div>
     </div>
     <script>
-        const canvas = document.getElementById('heartCanvas');
+        const canvas = document.getElementById('starCanvas');
         const ctx = canvas.getContext('2d');
         canvas.width = window.innerWidth; canvas.height = window.innerHeight;
-        let hearts = [];
-        class Heart {
-            constructor(x, y, sx, sy) { this.x = x; this.y = y; this.sx = sx; this.sy = sy; this.o = 1; }
-            draw() {
-                ctx.globalAlpha = this.o; ctx.fillStyle = '#ff4d6d'; ctx.beginPath();
-                ctx.moveTo(this.x, this.y); ctx.bezierCurveTo(this.x, this.y - 3, this.x - 5, this.y - 15, this.x - 25, this.y - 15);
-                ctx.bezierCurveTo(this.x - 55, this.y - 15, this.x - 55, this.y + 22.5, this.x - 55, this.y + 22.5);
-                ctx.bezierCurveTo(this.x - 55, this.y + 40, this.x - 35, this.y + 62, this.x, this.y + 80);
-                ctx.bezierCurveTo(this.x + 35, this.y + 62, this.x + 55, this.y + 40, this.x + 55, this.y + 22.5);
-                ctx.bezierCurveTo(this.x + 55, this.y + 22.5, this.x + 55, this.y - 15, this.x + 25, this.y - 15);
-                ctx.bezierCurveTo(this.x + 10, this.y - 15, this.x, this.y - 3, this.x, this.y); ctx.fill();
-            }
-            update() { this.x += this.sx; this.y += this.sy; this.o -= 0.01; }
+        let stars = [];
+        class Star {
+            constructor() { this.x = Math.random()*canvas.width; this.y = Math.random()*canvas.height; this.size = Math.random()*2; this.speed = Math.random()*0.3; }
+            draw() { ctx.fillStyle = "white"; ctx.beginPath(); ctx.arc(this.x, this.y, this.size, 0, Math.PI*2); ctx.fill(); }
+            update() { this.y += this.speed; if(this.y > canvas.height) this.y = 0; }
         }
-        function unlock() { 
+        for(let i=0; i<120; i++) stars.push(new Star());
+        function animate() { ctx.clearRect(0,0,canvas.width,canvas.height); stars.forEach(s=>{s.update(); s.draw();}); requestAnimationFrame(animate); }
+        animate();
+        function unlock() {
             const p = document.getElementById('pass').value.toUpperCase();
-            if(p === "LOVE") { 
-                document.getElementById('step1').classList.add('hidden'); 
-                document.getElementById('step2').classList.remove('hidden'); 
-            } else { 
-                alert("Incorrect Password! Hint: LOVE"); 
-            } 
+            if(p === "BESTIE") {
+                document.getElementById('step1').classList.add('hidden');
+                document.getElementById('step2').classList.remove('hidden');
+                const msg = "I just wanted to take a moment to say how much I appreciate your presence. You're not just a friend, you're a special person who brings so much positive energy. Thank you for being exactly who you are!";
+                let i = 0; function type() { if(i < msg.length) { document.getElementById("finalMsg").innerHTML += msg.charAt(i); i++; setTimeout(type, 45); } } type();
+            } else { alert("Try 'BESTIE'"); }
         }
-        function moveNo() { const b = document.getElementById('noBtn'); b.style.left = Math.random() * 70 + '%'; b.style.top = Math.random() * 70 + '%'; }
-        function explodeHearts() {
-            document.getElementById('step2').classList.add('hidden'); document.getElementById('step3').classList.remove('hidden');
-            const msg = "Every beat of my heart is a song for you. You are my light in the dark and my peace in the chaos. I don't just love you for who you are, but for who I am when I'm with you. Will you be mine forever?";
-            let i = 0; function type() { if(i < msg.length) { document.getElementById("finalMsg").innerHTML += msg.charAt(i); i++; setTimeout(type, 40); } } type();
-            for(let j=0; j<40; j++) hearts.push(new Heart(window.innerWidth/2, window.innerHeight/2, (Math.random()-0.5)*12, (Math.random()-0.5)*12));
-            animate();
-        }
-        function animate() { ctx.clearRect(0, 0, canvas.width, canvas.height); hearts.forEach((h, index) => { h.update(); h.draw(); if(h.o <= 0) hearts.splice(index, 1); }); requestAnimationFrame(animate); }
     </script>
 </body>
 </html>
+
